@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WordSearch.Cli": {
+      "commandName": "Project",
+      "commandLineArgs": "--help"
+    }
+  }
+}
