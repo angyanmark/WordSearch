@@ -1,38 +1,39 @@
 ﻿namespace WordSearch.Tests;
 
+using static TestPuzzles;
+
 public class WordSearchTests
 {
-    private static readonly char[,] Grid3X3 =
-    {
-        { 'a', 'b', 'c' },
-        { 'd', 'e', 'f' },
-        { 'g', 'h', 'i' },
-    };
-    
-    private static readonly HashSet<string> Words3X3Valid =
-    [
-        "a", "ab", "abc", "ad", "adg", "ae", "aei", 
-        "b", "ba", "bd", "be", "beh", "bf", "bc",
-        "c", "cb", "cba", "ce", "ceg", "cf", "cfi",
-        "d", "da", "db", "de", "def", "dh", "dg",
-        "e", "ea", "eb", "ec", "ef", "ei", "eh", "eg", "ed",
-        "f", "fb", "fc", "fi", "fh", "fe", "fed",
-        "g", "gd", "gda", "ge", "gec", "gh", "ghi",
-        "h", "hd", "he", "heb", "hf", "hg", "hi",
-        "i", "ih", "ihg", "ie", "iea", "if", "ifc",
-    ];
-
-    public static (char[,] grid, HashSet<string> words) DataSource3X3Valid() =>
-        (Grid3X3, Words3X3Valid);
+    public static (char[,], HashSet<string>, bool) _0X0WithEmpty() => (Grid0X0, WordsEmpty, true);
+    public static (char[,], HashSet<string>, bool) _0X0Invalid() => (Grid0X0, Words0X0Invalid, false);
+    public static (char[,], HashSet<string>, bool) _1X1Valid() => (Grid1X1, Words1X1Valid, true);
+    public static (char[,], HashSet<string>, bool) _1X1Invalid() => (Grid1X1, Words1X1Invalid, false);
+    public static (char[,], HashSet<string>, bool) _1X3Valid() => (Grid1X3, Words1X3Valid, true);
+    public static (char[,], HashSet<string>, bool) _1X3Invalid() => (Grid1X3, Words1X3Invalid, false);
+    public static (char[,], HashSet<string>, bool) _3X1Valid() => (Grid3X1, Words3X1Valid, true);
+    public static (char[,], HashSet<string>, bool) _3X1Invalid() => (Grid3X1, Words3X1Invalid, false);
+    public static (char[,], HashSet<string>, bool) _3X3Valid() => (Grid3X3, Words3X3Valid, true);
+    public static (char[,], HashSet<string>, bool) _3X3WithEmpty() => (Grid3X3, WordsEmpty, true);
+    public static (char[,], HashSet<string>, bool) _3X3Invalid() => (Grid3X3, Words3X3Invalid, false);
 
     [Test]
-    [MethodDataSource(nameof(DataSource3X3Valid))]
-    public async Task Test_Valid(char[,] grid, HashSet<string> words)
+    [MethodDataSource(nameof(_0X0WithEmpty))]
+    [MethodDataSource(nameof(_0X0Invalid))]
+    [MethodDataSource(nameof(_1X1Valid))]
+    [MethodDataSource(nameof(_1X1Invalid))]
+    [MethodDataSource(nameof(_1X3Valid))]
+    [MethodDataSource(nameof(_1X3Invalid))]
+    [MethodDataSource(nameof(_3X1Valid))]
+    [MethodDataSource(nameof(_3X1Invalid))]
+    [MethodDataSource(nameof(_3X3Valid))]
+    [MethodDataSource(nameof(_3X3WithEmpty))]
+    [MethodDataSource(nameof(_3X3Invalid))]
+    public async Task Test_Valid(char[,] grid, HashSet<string> words, bool shouldFound)
     {
         var results = WordSearcher.SearchWords(grid, words);
         foreach (var result in results)
         {
-            await Assert.That(result.Found).IsTrue();
+            await Assert.That(result.Found).IsEqualTo(shouldFound);
         }
     }
 }
