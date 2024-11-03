@@ -28,12 +28,12 @@ public class WordSearchTests
     [MethodDataSource(nameof(_3X3Valid))]
     [MethodDataSource(nameof(_3X3WithEmpty))]
     [MethodDataSource(nameof(_3X3Invalid))]
-    public async Task Test_Valid(char[,] grid, HashSet<string> words, bool shouldFound)
+    public async Task TestPuzzles(char[,] grid, HashSet<string> words, bool shouldBeFound)
     {
         var results = WordSearcher.SearchWords(grid, words);
         foreach (var result in results)
         {
-            await Assert.That(result.Found).IsEqualTo(shouldFound);
+            await Assert.That(result.Found).IsEqualTo(shouldBeFound);
         }
     }
 }
