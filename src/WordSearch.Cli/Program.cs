@@ -30,6 +30,6 @@ async Task SolvePuzzleAsync(FileInfo gridFile, FileInfo wordsFile)
     
     foreach (var word in words)
     {
-        Console.WriteLine($"{WordSearcher.SearchWord(grid, word)} {word}");
+        Console.WriteLine($"{WordSearcher.Search(grid, word)} {word}");
     }
 }

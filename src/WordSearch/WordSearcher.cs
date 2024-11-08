@@ -23,8 +23,8 @@ public static class WordSearcher
     /// <param name="grid">A grid that contains the characters of the puzzle.</param>
     /// <param name="words">The search words.</param>
     /// <returns>The results of the search.</returns>
-    public static IEnumerable<WordSearchResult> SearchWords(char[,] grid, IEnumerable<string> words) =>
-        words.Select(word => SearchWord(grid, word));
+    public static IEnumerable<WordSearchResult> Search(char[,] grid, IEnumerable<string> words) =>
+        words.Select(word => Search(grid, word));
 
     /// <summary>
     /// Searches a specific word in the character grid.
@@ -32,7 +32,7 @@ public static class WordSearcher
     /// <param name="grid">A grid that contains the characters of the puzzle.</param>
     /// <param name="word">The search word.</param>
     /// <returns>The result of the search.</returns>
-    public static WordSearchResult SearchWord(char[,] grid, ReadOnlySpan<char> word)
+    public static WordSearchResult Search(char[,] grid, ReadOnlySpan<char> word)
     {
         for (var row = 0; row < grid.GetLength(0); row++)
         {

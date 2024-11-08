@@ -30,6 +30,6 @@ public class WordSearchTests
     [MethodDataSource(nameof(_3X3Invalid))]
     public async Task TestPuzzle(char[,] grid, HashSet<string> words, bool shouldBeFound) =>
         await Assert
-            .That(WordSearcher.SearchWords(grid, words).All(result => result.Found == shouldBeFound))
+            .That(WordSearcher.Search(grid, words).All(result => result.Found == shouldBeFound))
             .IsEqualTo(true);
 }
