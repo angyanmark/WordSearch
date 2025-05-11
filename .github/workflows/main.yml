@@ -1,0 +1,22 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+
+      - name: Build
+        run: dotnet build src/WordSearch.sln --configuration Release
+
+      - name: Test
+        run: dotnet test src/WordSearch.Tests/WordSearch.Tests.csproj --configuration Release --no-build

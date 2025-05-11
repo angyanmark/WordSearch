@@ -11,7 +11,7 @@ rootCommand.SetHandler(SolvePuzzleAsync, gridOption, wordsOption);
 
 return await rootCommand.InvokeAsync(args);
 
-async Task SolvePuzzleAsync(FileInfo gridFile, FileInfo wordsFile)
+async static Task SolvePuzzleAsync(FileInfo gridFile, FileInfo wordsFile)
 {
     var gridLines = await File.ReadAllLinesAsync(gridFile.FullName);
     var words = await File.ReadAllLinesAsync(wordsFile.FullName);
