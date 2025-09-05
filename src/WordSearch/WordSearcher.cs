@@ -5,16 +5,16 @@
 /// </summary>
 public static class WordSearcher
 {
-    private static readonly (short Row, short Col)[] Directions =
+    private static readonly Direction[] Directions =
     [
-        (-1, -1),
-        (-1, 0),
-        (-1, 1),
-        (0, -1),
-        (0, 1),
-        (1, -1),
-        (1, 0),
-        (1, 1),
+        new(-1, -1),
+        new(-1, 0),
+        new(-1, 1),
+        new(0, -1),
+        new(0, 1),
+        new(1, -1),
+        new(1, 0),
+        new(1, 1),
     ];
 
     /// <summary>
@@ -54,7 +54,7 @@ public static class WordSearcher
         int col,
         ReadOnlySpan<char> word,
         int index,
-        (short Row, short Col)? direction = null)
+        Direction? direction = null)
     {
         if (index == word.Length) return true; // End of word.
         if (row < 0 || col < 0 || row >= grid.GetLength(0) || col >= grid.GetLength(1)) return false; // Out of bounds.
@@ -62,7 +62,7 @@ public static class WordSearcher
 
         if (direction.HasValue)
         {
-            if (SearchWord(grid, row + direction.Value.Row, col + direction.Value.Col, word, index + 1, direction))
+            if (SearchWord(grid, row + direction.Value.X, col + direction.Value.Y, word, index + 1, direction))
             {
                 return true;
             }
@@ -71,7 +71,7 @@ public static class WordSearcher
         {
             for (var i = 0; i < Directions.Length; i++)
             {
-                if (SearchWord(grid, row + Directions[i].Row, col + Directions[i].Col, word, index + 1, Directions[i]))
+                if (SearchWord(grid, row + Directions[i].X, col + Directions[i].Y, word, index + 1, Directions[i]))
                 {
                     return true;
                 }

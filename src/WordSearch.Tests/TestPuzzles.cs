@@ -28,50 +28,50 @@ internal static class TestPuzzles
         { 'g', 'h', 'i' },
     };
     
-    public static readonly HashSet<string> WordsEmpty = [];
+    public static readonly IEnumerable<string> WordsEmpty = [];
     
-    public static readonly HashSet<string> Words0X0Invalid =
+    public static readonly IEnumerable<string> Words0X0Invalid =
     [
         "a", "ab",
     ];
     
-    public static readonly HashSet<string> Words1X1Valid =
+    public static readonly IEnumerable<string> Words1X1Valid =
     [
         "a",
     ];
     
-    public static readonly HashSet<string> Words1X1Invalid =
+    public static readonly IEnumerable<string> Words1X1Invalid =
     [
         "b", "ba", "bc",
     ];
     
-    public static readonly HashSet<string> Words1X3Valid =
+    public static readonly IEnumerable<string> Words1X3Valid =
     [
         "a", "ab", "abc",
         "b", "ba", "bc",
         "c", "cb", "cba",
     ];
     
-    public static readonly HashSet<string> Words1X3Invalid =
+    public static readonly IEnumerable<string> Words1X3Invalid =
     [
         "ac", "ca", "acb", "cab",
         "d",  "da",
     ];
     
-    public static readonly HashSet<string> Words3X1Valid =
+    public static readonly IEnumerable<string> Words3X1Valid =
     [
         "a", "ab", "abc",
         "b", "ba", "bc",
         "c", "cb", "cba",
     ];
     
-    public static readonly HashSet<string> Words3X1Invalid =
+    public static readonly IEnumerable<string> Words3X1Invalid =
     [
         "ac", "ca", "acb", "cab",
         "d",  "da",
     ];
     
-    public static readonly HashSet<string> Words3X3Valid =
+    public static readonly IEnumerable<string> Words3X3Valid =
     [
         "a", "ab", "abc", "ad", "adg", "ae", "aei", 
         "b", "ba", "bd", "be", "beh", "bf", "bc",
@@ -84,7 +84,7 @@ internal static class TestPuzzles
         "i", "ih", "ihg", "ie", "iea", "if", "ifc",
     ];
     
-    public static readonly HashSet<string> Words3X3Invalid =
+    public static readonly IEnumerable<string> Words3X3Invalid =
     [
         "ac", "acb",
         "ai", "aie",
