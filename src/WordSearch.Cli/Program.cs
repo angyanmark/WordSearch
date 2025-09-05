@@ -1,20 +1,24 @@
 ﻿using System.CommandLine;
 using WordSearch;
 
-var gridOption = new Option<FileInfo>("--grid", "The character grid of the puzzle.") { IsRequired = true };
-var wordsOption = new Option<FileInfo>("--words", "The words to find in the puzzle.") { IsRequired = true };
+var gridOption = new Option<FileInfo>("--grid") { Description = "The character grid of the puzzle.", Required = true };
+var wordsOption = new Option<FileInfo>("--words") { Description = "The words to find in the puzzle.", Required = true };
 
 var rootCommand = new RootCommand("Solve a word search puzzle.");
-rootCommand.AddOption(gridOption);
-rootCommand.AddOption(wordsOption);
-rootCommand.SetHandler(SolvePuzzleAsync, gridOption, wordsOption);
+rootCommand.Options.Add(gridOption);
+rootCommand.Options.Add(wordsOption);
+rootCommand.SetAction(async (parseResult, cancellationToken) =>
+    await SolvePuzzleAsync(
+        parseResult.GetRequiredValue(gridOption),
+        parseResult.GetRequiredValue(wordsOption),
+        cancellationToken));
 
-return await rootCommand.InvokeAsync(args);
+return await rootCommand.Parse(args).InvokeAsync();
 
-async static Task SolvePuzzleAsync(FileInfo gridFile, FileInfo wordsFile)
+async static Task SolvePuzzleAsync(FileInfo gridFile, FileInfo wordsFile, CancellationToken cancellationToken = default)
 {
-    var gridLines = await File.ReadAllLinesAsync(gridFile.FullName);
-    var words = await File.ReadAllLinesAsync(wordsFile.FullName);
+    var gridLines = await File.ReadAllLinesAsync(gridFile.FullName, cancellationToken);
+    var words = await File.ReadAllLinesAsync(wordsFile.FullName, cancellationToken);
 
     var rows = gridLines.Length;
     var cols = gridLines[0].Length;

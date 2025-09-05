@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="..\Common.props" />
+    <Import Project="../Common.props" />
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -9,11 +9,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\WordSearch\WordSearch.csproj" />
+        <ProjectReference Include="../WordSearch/WordSearch.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="TUnit" Version="0.19.143" />
+        <PackageReference Include="TUnit" Version="0.57.24" />
     </ItemGroup>
 
 </Project>

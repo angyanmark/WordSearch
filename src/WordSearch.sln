@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Common.props = Common.props
 		nuget.config = nuget.config
 		..\global.json = ..\global.json
-		Publish.ps1 = Publish.ps1
+		publish.sh = publish.sh
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordSearch.Tests", "WordSearch.Tests\WordSearch.Tests.csproj", "{0B2AE014-B4EC-4A69-9209-27501277A9CC}"
