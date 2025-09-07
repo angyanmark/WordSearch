@@ -38,9 +38,10 @@ public static class WordSearcher
         {
             for (var col = 0; col < grid.GetLength(1); col++)
             {
-                if (SearchWord(grid, row, col, word, 0))
+                var search = SearchWord(grid, row, col, word, 0);
+                if (search.Found)
                 {
-                    return new(true, row, col);
+                    return new(true, new(row, col), search.Direction);
                 }
             }
         }
@@ -48,7 +49,7 @@ public static class WordSearcher
         return new(false);
     }
 
-    private static bool SearchWord(
+    private static SearchResult SearchWord(
         char[,] grid,
         int row,
         int col,
@@ -56,28 +57,30 @@ public static class WordSearcher
         int index,
         Direction? direction = null)
     {
-        if (index == word.Length) return true; // End of word.
-        if (row < 0 || col < 0 || row >= grid.GetLength(0) || col >= grid.GetLength(1)) return false; // Out of bounds.
-        if (grid[row, col] != word[index]) return false; // Wrong character.
+        if (index == word.Length) return new(true, direction); // End of word.
+        if (row < 0 || col < 0 || row >= grid.GetLength(0) || col >= grid.GetLength(1)) return new(false); // Out of bounds.
+        if (grid[row, col] != word[index]) return new(false); // Wrong character.
 
         if (direction.HasValue)
         {
-            if (SearchWord(grid, row + direction.Value.X, col + direction.Value.Y, word, index + 1, direction))
+            var search = SearchWord(grid, row + direction.Value.Row, col + direction.Value.Column, word, index + 1, direction);
+            if (search.Found)
             {
-                return true;
+                return new(true, search.Direction);
             }
         }
         else
         {
             for (var i = 0; i < Directions.Length; i++)
             {
-                if (SearchWord(grid, row + Directions[i].X, col + Directions[i].Y, word, index + 1, Directions[i]))
+                var search = SearchWord(grid, row + Directions[i].Row, col + Directions[i].Column, word, index + 1, Directions[i]);
+                if (search.Found)
                 {
-                    return true;
+                    return new(true, search.Direction);
                 }
             }
         }
 
-        return false;
+        return new(false);
     }
 }

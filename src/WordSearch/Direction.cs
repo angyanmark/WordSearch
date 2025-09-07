@@ -3,6 +3,6 @@ namespace WordSearch;
 /// <summary>
 /// A direction on the two-dimensional grid.
 /// </summary>
-/// <param name="X">X-axis.</param>
-/// <param name="Y">Y-axis.</param>
-internal readonly record struct Direction(short X, short Y);
+/// <param name="Row">Row offset of the next character.</param>
+/// <param name="Column">Column offset of the next character.</param>
+public readonly record struct Direction(int Row, int Column);
