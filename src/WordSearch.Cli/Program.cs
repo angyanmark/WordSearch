@@ -31,7 +31,7 @@ async static Task SolvePuzzleAsync(FileInfo gridFile, FileInfo wordsFile, Cancel
             grid[i, j] = gridLines[i][j];
         }
     }
-    
+
     foreach (var word in words)
     {
         Console.WriteLine($"{WordSearcher.Search(grid, word)} {word}");
