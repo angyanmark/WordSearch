@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-dotnet@v5
 
       - name: Build
-        run: dotnet build src/WordSearch.sln --configuration Release
+        run: dotnet build src/WordSearch.slnx --configuration Release
 
       - name: Test
-        run: dotnet test src/WordSearch.Tests/WordSearch.Tests.csproj --configuration Release --no-build
+        run: dotnet test --project src/WordSearch.Tests/WordSearch.Tests.csproj --configuration Release --no-build

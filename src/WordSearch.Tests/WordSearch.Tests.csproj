@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="../Common.props" />
+  <Import Project="../Common.props" />
 
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <PublishAot>true</PublishAot>
-        <InvariantGlobalization>true</InvariantGlobalization>
-    </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <PublishAot>true</PublishAot>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="../WordSearch/WordSearch.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../WordSearch/WordSearch.csproj" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="TUnit" Version="0.63.3" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="TUnit" Version="1.0.48" />
+  </ItemGroup>
 
 </Project>

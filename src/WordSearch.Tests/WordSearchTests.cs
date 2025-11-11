@@ -2,7 +2,7 @@
 
 using static TestPuzzles;
 
-public class WordSearchTests
+public sealed class WordSearchTests
 {
     public static Func<(char[,], IEnumerable<string>, bool)> _0X0WithEmpty() => () => (Grid0X0, WordsEmpty, true);
     public static Func<(char[,], IEnumerable<string>, bool)> _0X0Invalid() => () => (Grid0X0, Words0X0Invalid, false);
