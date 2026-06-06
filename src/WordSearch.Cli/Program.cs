@@ -7,15 +7,15 @@ var wordsOption = new Option<FileInfo>("--words") { Description = "The words to 
 var rootCommand = new RootCommand("Solve a word search puzzle.");
 rootCommand.Options.Add(gridOption);
 rootCommand.Options.Add(wordsOption);
-rootCommand.SetAction(async (parseResult, cancellationToken) =>
-    await SolvePuzzleAsync(
+rootCommand.SetAction((parseResult, cancellationToken) =>
+    SolvePuzzleAsync(
         parseResult.GetRequiredValue(gridOption),
         parseResult.GetRequiredValue(wordsOption),
         cancellationToken));
 
 return await rootCommand.Parse(args).InvokeAsync();
 
-async static Task SolvePuzzleAsync(FileInfo gridFile, FileInfo wordsFile, CancellationToken cancellationToken = default)
+static async Task SolvePuzzleAsync(FileInfo gridFile, FileInfo wordsFile, CancellationToken cancellationToken = default)
 {
     var gridLines = await File.ReadAllLinesAsync(gridFile.FullName, cancellationToken);
     var words = await File.ReadAllLinesAsync(wordsFile.FullName, cancellationToken);
