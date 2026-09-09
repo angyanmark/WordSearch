@@ -17,8 +17,11 @@ return await rootCommand.Parse(args).InvokeAsync();
 
 static async Task SolvePuzzleAsync(FileInfo gridFile, FileInfo wordsFile, CancellationToken cancellationToken = default)
 {
-    var gridLines = await File.ReadAllLinesAsync(gridFile.FullName, cancellationToken);
-    var words = await File.ReadAllLinesAsync(wordsFile.FullName, cancellationToken);
+    var gridLinesTask = File.ReadAllLinesAsync(gridFile.FullName, cancellationToken);
+    var wordsTask = File.ReadAllLinesAsync(wordsFile.FullName, cancellationToken);
+    await Task.WhenAll(gridLinesTask, wordsTask);
+    var gridLines = await gridLinesTask;
+    var words = await wordsTask;
 
     var rows = gridLines.Length;
     var cols = gridLines[0].Length;

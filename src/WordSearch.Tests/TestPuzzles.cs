@@ -4,6 +4,10 @@ internal static class TestPuzzles
 {
     public static readonly char[,] Grid0X0 = { };
 
+    public static readonly char[,] Grid0X3 = new char[0, 3];
+
+    public static readonly char[,] Grid3X0 = new char[3, 0];
+
     public static readonly char[,] Grid1X1 =
     {
         { 'a' },
@@ -28,7 +32,22 @@ internal static class TestPuzzles
         { 'g', 'h', 'i' },
     };
 
+    public static readonly char[,] Grid3X3Repeated =
+    {
+        { 'a', 'a', 'a' },
+        { 'a', 'a', 'a' },
+        { 'a', 'a', 'a' },
+    };
+
     public static readonly IEnumerable<string> WordsEmpty = [];
+
+    public static readonly IEnumerable<string> WordsEmptyString = [""];
+
+    public static readonly IEnumerable<string> WordsSingle = ["a"];
+
+    public static readonly IEnumerable<string> WordsRepeated = ["aa", "aaa", "aaaa"];
+
+    public static readonly IEnumerable<string> WordsDuplicates = ["a", "a", "ab"];
 
     public static readonly IEnumerable<string> Words0X0Invalid =
     [
