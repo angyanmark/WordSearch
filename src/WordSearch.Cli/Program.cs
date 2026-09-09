@@ -7,8 +7,8 @@ var wordsOption = new Option<FileInfo>("--words") { Description = "The words to 
 var rootCommand = new RootCommand("Solve a word search puzzle.");
 rootCommand.Options.Add(gridOption);
 rootCommand.Options.Add(wordsOption);
-rootCommand.SetAction((parseResult, cancellationToken) =>
-    SolvePuzzleAsync(
+rootCommand.SetAction(async (parseResult, cancellationToken) =>
+    await SolvePuzzleAsync(
         parseResult.GetRequiredValue(gridOption),
         parseResult.GetRequiredValue(wordsOption),
         cancellationToken));

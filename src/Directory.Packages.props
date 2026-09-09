@@ -2,11 +2,14 @@
 
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <RestoreLockedMode>true</RestoreLockedMode>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageVersion Include="System.CommandLine" Version="2.0.8" />
-    <PackageVersion Include="TUnit" Version="1.50.0" />
+    <PackageVersion Include="System.CommandLine" Version="2.0.12" />
+    <PackageVersion Include="TUnit" Version="1.66.27" />
   </ItemGroup>
 
 </Project>
