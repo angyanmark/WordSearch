@@ -2,34 +2,26 @@
 
 using static TestPuzzles;
 
+[TestClass]
 public sealed class WordSearchTests
 {
-    public static Func<(char[,], IEnumerable<string>, bool)> _0X0WithEmpty() => () => (Grid0X0, WordsEmpty, true);
-    public static Func<(char[,], IEnumerable<string>, bool)> _0X0Invalid() => () => (Grid0X0, Words0X0Invalid, false);
-    public static Func<(char[,], IEnumerable<string>, bool)> _1X1Valid() => () => (Grid1X1, Words1X1Valid, true);
-    public static Func<(char[,], IEnumerable<string>, bool)> _1X1Invalid() => () => (Grid1X1, Words1X1Invalid, false);
-    public static Func<(char[,], IEnumerable<string>, bool)> _1X3Valid() => () => (Grid1X3, Words1X3Valid, true);
-    public static Func<(char[,], IEnumerable<string>, bool)> _1X3Invalid() => () => (Grid1X3, Words1X3Invalid, false);
-    public static Func<(char[,], IEnumerable<string>, bool)> _3X1Valid() => () => (Grid3X1, Words3X1Valid, true);
-    public static Func<(char[,], IEnumerable<string>, bool)> _3X1Invalid() => () => (Grid3X1, Words3X1Invalid, false);
-    public static Func<(char[,], IEnumerable<string>, bool)> _3X3Valid() => () => (Grid3X3, Words3X3Valid, true);
-    public static Func<(char[,], IEnumerable<string>, bool)> _3X3WithEmpty() => () => (Grid3X3, WordsEmpty, true);
-    public static Func<(char[,], IEnumerable<string>, bool)> _3X3Invalid() => () => (Grid3X3, Words3X3Invalid, false);
+    public static IEnumerable<(char[,], IEnumerable<string>, bool)> TestCases =>
+    [
+        (Grid0X0, WordsEmpty, true),
+        (Grid0X0, Words0X0Invalid, false),
+        (Grid1X1, Words1X1Valid, true),
+        (Grid1X1, Words1X1Invalid, false),
+        (Grid1X3, Words1X3Valid, true),
+        (Grid1X3, Words1X3Invalid, false),
+        (Grid3X1, Words3X1Valid, true),
+        (Grid3X1, Words3X1Invalid, false),
+        (Grid3X3, Words3X3Valid, true),
+        (Grid3X3, WordsEmpty, true),
+        (Grid3X3, Words3X3Invalid, false),
+    ];
 
-    [Test]
-    [MethodDataSource(nameof(_0X0WithEmpty))]
-    [MethodDataSource(nameof(_0X0Invalid))]
-    [MethodDataSource(nameof(_1X1Valid))]
-    [MethodDataSource(nameof(_1X1Invalid))]
-    [MethodDataSource(nameof(_1X3Valid))]
-    [MethodDataSource(nameof(_1X3Invalid))]
-    [MethodDataSource(nameof(_3X1Valid))]
-    [MethodDataSource(nameof(_3X1Invalid))]
-    [MethodDataSource(nameof(_3X3Valid))]
-    [MethodDataSource(nameof(_3X3WithEmpty))]
-    [MethodDataSource(nameof(_3X3Invalid))]
-    public async Task TestPuzzle(char[,] grid, IEnumerable<string> words, bool shouldBeFound) =>
-        await Assert
-            .That(WordSearcher.Search(grid, words).All(result => result.Found == shouldBeFound))
-            .IsTrue();
+    [TestMethod]
+    [DynamicData(nameof(TestCases))]
+    public void TestPuzzle(char[,] grid, IEnumerable<string> words, bool shouldBeFound) =>
+        Assert.IsTrue(WordSearcher.Search(grid, words).All(result => result.Found == shouldBeFound));
 }
